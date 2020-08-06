@@ -1,0 +1,24 @@
+{
+  "development": {
+    "driver": "mysql",
+    "url": {
+      "ENV": "MYSQL_URL"
+    },
+    "multipleStatements": true
+  },
+  "staging": {
+    "driver": "mysql",
+    "url": {
+      "ENV": "MYSQL_URL"
+    },
+    "multipleStatements": true
+  },
+  "production": {
+    "driver": "mysql",
+    "url": {
+      "ENV": "MYSQL_URL"
+    },
+    "multipleStatements": true
+  },
+  "sql-file": true
+}

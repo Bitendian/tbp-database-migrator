@@ -1,0 +1,20 @@
+{
+  "name": "database-migrator",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "start": "npm install && npm run migrate up && npm run migrate up:test",
+    "migrate": "db-migrate",
+    "migrate:redo:test": "npm install && npm run migrate reset:test && npm run migrate up:test",
+    "migrate:redo": "npm run migrate reset:test && npm run migrate reset && npm run migrate up && npm run migrate up:test",
+    "dustc": "dust_compiler",
+    "dustc:watch": "dust_compiler ./dust/src ./dust/compiled"
+  },
+  "dependencies": {
+    "db-migrate": "~0.10.0-beta.24",
+    "db-migrate-mysql": "~1.1"
+  }
+}
