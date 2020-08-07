@@ -6,14 +6,14 @@ El **docker-compose.yml** tendrá la siguiente forma:
 
 ```shell script
 migrator:
-  image: node:10-alpine
+  build: ./bin/migrator
   container_name: 'migrator'
   depends_on:
     - mysql # name of mysql container
   links:
     - mysql # name of mysql container
   volumes:
-    - ../migrator:/usr/src/app
+    - ${DOCUMENT_ROOT-../migrations}:/usr/src/app/migrations
   user: node
   working_dir: /usr/src/app
   entrypoint: npm
@@ -23,6 +23,9 @@ migrator:
     MYSQL_URL: mysql://USER:PASSWORD@SERVER/DATABASE
 ```
 Donde `USER`, `PASSWORD`, `SERVER` y `DATABASE` son los credenciales del container mysql.
+
+También destacar la carpeta montada `migrations`, que es donde se generarán los tres ficheros que veremos más adelante, y que nos
+servirá para lanzar un upgrade (o downgrade) de la base de datos.
 
 ## Script
 

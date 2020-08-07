@@ -1,5 +1,5 @@
 {
-  "name": "database-migrator",
+  "name": "tracer-migrator",
   "license": "UNLICENSED",
   "private": true,
   "engines": {
