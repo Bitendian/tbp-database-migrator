@@ -18,11 +18,10 @@ migrator:
   working_dir: /usr/src/app
   entrypoint: npm
   command: start # starts npm
-  restart: on-failure
   environment:
     MYSQL_URL: mysql://USER:PASSWORD@SERVER/DATABASE
 ```
-Donde `USER`, `PASSWORD`, `SERVER` y `DATABASE` son los credenciales del container mysql.
+Donde `USER`, `PASSWORD` y `DATABASE` son los credenciales del container mysql, y `SERVER` el nombre el mismo.
 
 También destacar la carpeta montada `migrations`, que es donde se generarán los tres ficheros que veremos más adelante, y que nos
 servirá para lanzar un upgrade (o downgrade) de la base de datos.
@@ -40,8 +39,13 @@ El script tendrá la siguiente forma:
 #!/bin/bash -e
 
 CMD=$@
-cd docker
-docker-compose run --rm CONTAINER_NAME run migrate ${CMD}
+
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname $SCRIPT`
+
+cd ${SCRIPTPATH}/docker # route from script to docker folder
+docker-compose run --rm patients-migrator run migrate ${CMD}
+
 ```
 Donde `CONTAINER_NAME` es el nombre del contenedor donde se está ejecutando el Database Migrator.
 
