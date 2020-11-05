@@ -1,5 +1,5 @@
 {
-  "name": "tracer-migrator",
+  "name": "tbp-database-migrator",
   "license": "UNLICENSED",
   "private": true,
   "engines": {
