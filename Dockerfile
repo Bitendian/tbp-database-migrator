@@ -1,5 +1,7 @@
 FROM node:10-alpine
 
+RUN apk update && apk add --no-cache openssl
+
 # Create app directory
 WORKDIR /usr/src/app
 
